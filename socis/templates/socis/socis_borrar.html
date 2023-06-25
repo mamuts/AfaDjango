@@ -1,0 +1,31 @@
+{% extends 'admin/index.html' %}
+{% block socis %}
+    <!-- Caixa -->
+        <!-- Capçalera Caixa -->
+        <div class="card card-danger">
+            <div class="card-header border-0">
+                <h3 class="card-title"><i class="fas fa-th mr-1"></i> Siusplau confirma que vols eliminar el següent soci:</h3>
+            </div>
+        <!-- Contingut caixa -->
+            <div class="card-body">
+                <form role="form" method="POST">
+                    {% csrf_token %}
+                    <div class="card-body">
+                        <h5>Borrar <strong>"{{ obj.soci_nom }}"</strong>?</h5>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer justify-content-between">
+                        <button type="submit" class="btn btn-danger">Confirmar borrar</button>
+                        <a class="btn btn-default float-right" href="{% url 'socis:socis' %}">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+            <!-- /.Contingut caixa -- >
+            <!-- Peu de la caixa -->
+            <div class="card-footer">
+                Footer
+            </div>
+            <!-- /.Peu de la caixa-->
+        </div>
+    <!-- /.caixa -->
+{% endblock socis %}

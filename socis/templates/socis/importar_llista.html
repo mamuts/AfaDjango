@@ -1,0 +1,64 @@
+{% extends 'admin/index.html' %}
+{% block socis %}
+    <!-- Caixa -->
+    <div class="card bg-gradient-info">
+        <!-- Capçalera Caixa -->
+        <div class="card-header border-0">
+            <h3 class="card-title"><i class="fas fa-th mr-1"></i> Llistat d'importacions:</h3>
+            <div class="card-tools">
+                <a href="{% url 'socis:importar_crear' %}" class="btn btn-sm btn-primary btn-circle"><i class="fas fa-plus"></i></a>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown"><i class="fas fa-wrench"></i></button>
+                    <div class="dropdown-menu dropdown-menu-right" role="menu">
+                        <a href="#" class="dropdown-item">New</a>
+                        <a href="#" class="dropdown-item">Another action</a>
+                        <a href="#" class="dropdown-item">Something else here</a>
+                        <a class="dropdown-divider"></a>
+                        <a href="#" class="dropdown-item">Separated link</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /. Capçalera Caixa -->
+        <!-- Contingut caixa -->
+        <div class="card-body">
+            {% if not object_list %}
+                <div class="alert alert-warning"> No hi ha importacions </div>
+            {% else %}
+                <table class="table table-striped table-hover table-responsive-sm">
+                    <thead>
+                        <th>ID</th>
+                        <th>Nom arxiu</th>
+                        <th>Ruta arxiu</th>
+                        <th class="all">Accions</th>
+                    </thead>
+                    <tbody>
+                        {% for item in object_list %}
+                            <tr>
+                                <td>{{ item.importar_id }}</td>
+                                <td>{{ item.importar_nom }}</td>
+                                <td>{{ item.importar_ruta }}</td>
+                                <td>
+                                    <a href="" class="btn btn-danger btn-circle" role="button">
+                                        <i class="far fa-eye"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="" class="btn btn-danger btn-circle" role="button">
+                                        <i class="far fa-trash-alt"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        </div>
+        <!-- /.Contingut caixa -- >
+        <!-- Peu de la caixa -->
+        <div class="card-footer">
+        </div>
+        <!-- /.Peu de la caixa-->
+        </div>
+    <!-- /.caixa -->
+{% endblock socis %}

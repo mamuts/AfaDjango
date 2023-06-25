@@ -1,0 +1,152 @@
+{% extends "admin/head.html" %}
+{% load static %}
+{% block sidebar %}
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+
+      <!-- Preloader -->
+      <div class="preloader flex-column justify-content-center align-items-center">
+        <img class="animation__shake" src="{% static 'lib/adminLTE/img/AdminLTELogo.png' %}" alt="AdminLTELogo" height="60" width="60">
+      </div>
+
+      <!-- Navbar -->
+      <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+          </li>
+          <li class="nav-item d-none d-sm-inline-block">
+            <a href="{% url 'admin:logout' %}" class="nav-link">Sortir</a>
+          </li>
+          <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" class="nav-link">Contact</a>
+          </li>
+        </ul>
+
+        <!-- Right navbar links -->
+        <ul class="navbar-nav ml-auto">
+          <!-- Navbar Search -->
+          <li class="nav-item">
+            <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+              <i class="fas fa-search"></i>
+            </a>
+            <div class="navbar-search-block">
+              <form class="form-inline">
+                <div class="input-group input-group-sm">
+                  <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                  <div class="input-group-append">
+                    <button class="btn btn-navbar" type="submit">
+                      <i class="fas fa-search"></i>
+                    </button>
+                    <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+              <i class="fas fa-expand-arrows-alt"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
+              <i class="fas fa-th-large"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.navbar -->
+
+      <!-- Main Sidebar Container -->
+      <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="{% url 'admin:index' %}" class="brand-link">
+          <img src="{% static 'media/logoSol.svg' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+          <span class="brand-text font-weight-light">AFA Escola</span>
+        </a>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+          <!-- Sidebar user panel (optional) -->
+          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+              <img src="{% static 'lib/adminLTE/img/avatar2.png' %}" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+              <a href="#" class="d-block">Alexander Pierce</a>
+            </div>
+          </div>
+
+          <!-- SidebarSearch Form -->
+          <div class="form-inline">
+            <div class="input-group" data-widget="sidebar-search">
+              <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+              <div class="input-group-append">
+                <button class="btn btn-sidebar">
+                  <i class="fas fa-search fa-fw"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar Menu -->
+          {% block nav_links_ul %}
+          <nav class="mt-2">
+              <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+              {% block nav_links_outer %}
+              <li class="nav-header">{% block nav_heading %}MENÚ PRINCIPAL{% endblock %}</li>
+              {% block nav_links %}
+              <li class="nav-item has-tree-view ">
+                <a href="{% url 'socis:socis' %}" class="nav-link">
+                    <i class="nav-icon fas fa-object-group"></i> <p>SOCIS</p>
+                    <p><i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview menu-open">
+                  <li class="nav-item">
+                    <a href="{% url 'socis:socis' %}" class="nav-link">
+                      <i class="nav-icon fas fa-circle"></i> LListat Socis
+                    </a>
+                  </li>
+                </ul>
+                <ul class="nav nav-treeview menu-open">
+                  <li class="nav-item">
+                    <a href="{% url 'socis:importacions' %}" class="nav-link">
+                      <i class="nav-icon fas fa-circle"></i> Importar Socis
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              {% if app_list %}
+                {% for app in app_list %}
+                  <li class="nav-item has-tree-view ">
+                      <a href="{{ app.app_url }}" class="nav-link">
+                          <i class="nav-icon fas fa-object-group"></i> <p>{{ app.name }}</p>
+                          <p><i class="right fas fa-angle-left"></i>
+                          </p>
+                      </a>
+                      {% for model in app.models %}
+                        {% if model.admin_url %}
+                        <ul class="nav nav-treeview menu-open">
+                                <li class="nav-item">
+                                  <a href="{{ model.admin_url }}" class="nav-link">
+                                    <i class="nav-icon fas fa-circle"></i> {{ model.name }}
+                                  </a>
+                                </li>
+                        </ul>
+                        {% endif %}
+                      {% endfor %}
+                    </li>
+                {% endfor %}
+              {% endif %}
+              {% endblock nav_links %}
+              {% endblock nav_links_outer %}
+              </ul>
+              </nav>
+          {% endblock nav_links_ul %}
+      </aside>
+      {% endblock %}
