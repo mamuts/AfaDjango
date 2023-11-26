@@ -1,5 +1,7 @@
 from django.db import models
 from django.conf import settings
+import os
+
 
 # Create your models here.
 class Socis(models.Model):
@@ -14,7 +16,7 @@ class Socis(models.Model):
     soci_drets_imatge = models.BooleanField()
     soci_drets_whatzap = models.BooleanField()
     soci_cc = models.CharField(max_length=25)
-    soci_nom_pares = models.CharField(max_length=100)
+    soci_nom_pares = models.CharField(max_length=150)
 
     class Meta:
         verbose_name = "Soci"
@@ -25,12 +27,9 @@ class Socis(models.Model):
         return self.soci_nom
 
 class Importar(models.Model):
-    """docstring for Importar.models"""
+    """ Model per importar els arxius utilitzats per carregar els llistats de socis """
 
     importar_id = models.AutoField(primary_key=True)
     importar_nom = models.CharField(max_length=100)
-    importar_ruta = models.FileField(verbose_name="Csv", upload_to="afadjango/arxius")
-
-    class Meta:
-        verbose_name = "Importar"
-        verbose_name_plural = "Importacions"
+    importar_data = models.DateTimeField(auto_now_add=True)
+    importar_ruta = models.FileField(verbose_name="Csv", upload_to="afadjango/socis/csv")

@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'socis',
+    'estones',
     'adminlte3',
     'adminlte3_theme',
     'django.contrib.admin',

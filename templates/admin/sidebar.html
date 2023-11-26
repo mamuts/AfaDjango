@@ -121,6 +121,27 @@
                   </li>
                 </ul>
               </li>
+              <li class="nav-item has-tree-view ">
+                <a href="{% url 'estones:usuaris' %}" class="nav-link">
+                    <i class="nav-icon fas fa-object-group"></i> <p>Estones</p>
+                    <p><i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview menu-open">
+                  <li class="nav-item">
+                    <a href="{% url 'estones:usuaris' %}" class="nav-link">
+                      <i class="nav-icon fas fa-circle"></i> LListat Socis
+                    </a>
+                  </li>
+                </ul>
+                <ul class="nav nav-treeview menu-open">
+                  <li class="nav-item">
+                    <a href="{% url 'socis:importacions' %}" class="nav-link">
+                      <i class="nav-icon fas fa-circle"></i> Importar Socis
+                    </a>
+                  </li>
+                </ul>
+              </li>
               {% if app_list %}
                 {% for app in app_list %}
                   <li class="nav-item has-tree-view ">

@@ -1,6 +1,6 @@
 # Django
 from django.urls import path
-from . views import SocisView, CrearSoci, BorrarSoci, EditarSoci, LListaImportar, CrearImportacio
+from . views import SocisView, CrearSoci, BorrarSoci, EditarSoci, LListaImportar, CrearImportacio, ExempleImportacio
 from socis import views as socis_views
 
 urlpatterns = [
@@ -10,4 +10,5 @@ urlpatterns = [
     path('editar/<int:pk>', EditarSoci.as_view(), name="soci_editar"),
     path('importar/', LListaImportar.as_view(), name="importacions"),
     path('importar-nova/', CrearImportacio.as_view(), name="importar_crear"),
+    path('importar-exemple/<int:pk>', ExempleImportacio.as_view(), name="importar_exemple"),
 ]

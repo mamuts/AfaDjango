@@ -29,6 +29,7 @@
                     <thead>
                         <th>ID</th>
                         <th>Nom arxiu</th>
+                        <th>Data</th>
                         <th>Ruta arxiu</th>
                         <th class="all">Accions</th>
                     </thead>
@@ -37,9 +38,10 @@
                             <tr>
                                 <td>{{ item.importar_id }}</td>
                                 <td>{{ item.importar_nom }}</td>
+                                <td>{{ item.importar_data }}</td>
                                 <td>{{ item.importar_ruta }}</td>
                                 <td>
-                                    <a href="" class="btn btn-danger btn-circle" role="button">
+                                    <a href="{% url 'socis:importar_exemple' item.importar_id %}" class="btn btn-circle" role="button">
                                         <i class="far fa-eye"></i>
                                     </a>
                                 </td>
